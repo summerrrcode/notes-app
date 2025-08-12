@@ -1,7 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
-import Logo from "../assets/images/logo.png";
+import { useRouter } from "expo-router";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Logo from "../assets/images/react-logo.png";
 
 const HomeScreen = () => {
+  const router = useRouter();
   return (
     <View
       style={{
@@ -10,8 +12,12 @@ const HomeScreen = () => {
         alignItems: "center",
       }}
     > 
-      <Image source={{ Logo }} />
-      <Text>Welcome to Notes App</Text>
+      <Image source={Logo} style={styles.image} />
+      <Text style={ styles.title }>Welcome to Notes App</Text>
+      <Text style={ styles.subTitle }>Capture your thoughts</Text>
+      <TouchableOpacity onPress={() => router.push('/notes')}>
+        <Text style={styles.button}>Go to Notes</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -27,6 +33,23 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 20,
+  },
+  subTitle: {
+    fontSize: 16,
+    color: 'gray',
+    marginTop: 10,
+  },
+  button: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: 'blue',
+    borderRadius: 5,
+    color: 'white',
   }
 })
 
